@@ -9,7 +9,9 @@ Client -------------------------->Server
 4. Protocols:-
     a) TCP => Transmission Control Protocol => It makes sure that the data reaches the destination and doesn't get corrupted on the way.
                 Ex:- Sending an email.
+
     b) UDP => User Datagram Protocol => It's ok if the entire data is not reaching the end user. Ex:- Video calls.
+
     c) HTTP => Hyper Text Transfer Protocol => Used by web browsers which describes the format in which data is being transferred between clients and servers.
 
 5. Every other device that is connected to each other over a network has something called as "IP Address". 
@@ -21,7 +23,8 @@ Client -------------------------->Server
 Ports 0 - 1023 => Reserved Ports, 1024-49152 => Reserved for some specific applications. The remaining ones we can use.
 
 7. 1mbps download speed => You are downloading 10^6 bits per second from some other computer to your computer and vice versa for the upload speed.
-    a) Guided Way => Communication is happening with a definite path => connected using a wire
+    a) Guided Way => Communication is happening with a definite path => connected using a wire.
+
     b) Unguided Way => Communication is happening without any guided path => Connected using wifi, bluetooth. 
         Physically the entire network is connected with optical fibre cables underwater. [speed using optical fibres >>> sattelites ]
         Wireless network includes radio channels, bluetooth's(for short range), wifi(for short range), 3G/4G/5G Volte(For Longer Ranges)
@@ -44,20 +47,27 @@ Ports 0 - 1023 => Reserved Ports, 1024-49152 => Reserved for some specific appli
                   e) MESH => Every single computer connected to every single computer. It's very expensive as many wires are being used and adding a new computer is a headache as we need to connect to every other computer(Scalability issue). ![Alt text](image-4.png)
 
 11. OSI Model [Open Systems Interconnection Model] => The process by which the internet works, a standard way how two or more computers interact with each other.
+
         a) Application layer -> the layer where the user interacts with the applications through his device. It's implemented in an application software.
+
         b) Presentation layer -> The data/message is sent from application layer to presentation layer and this layer converts the message of application layer into machine readable binary format, from ASCII to EBCDIC by a process known as "Translation". Before the data is transmitted further the data undergoes encoding, encryption[via SSL Layer] so that the data is readable only to the person to whom that is sent. This process also undergoes Data Abstraction and the data is also compressed over here. [In short Encryption, Translation, Abstraction, Compression of data happens in this layer]
+
         c) Session layer -> This layer helps in => i) Setting up and managing the connections(sessions)  ii) Enables sending and recieving of data               iii) Termination of the connected sessions. This layer checks the authentiation - if the user is a valid one or not, authorization - if the user has permission to access the files or not.
+
         d) Transport layer -> It recieves data from session layer and it has it's set of protocols like TCP and UDP on how the data will get transferred to the end user. This process is done in 3 ways:-
             i) Segmentation -> The data recieved from the session layer will be broken down to small segments and each segment will have the source and destinations's port number and the sequence number[This helps to re-assemble the segments in the correct order].
             ii) Flow Controls -> Controls the amount of data that is being transferred. Say the server is sending at 40MBPS but client is recieving at 20MBPS then it will ask the server to slow down. It also works on error control, say some packets of data is lost, corrupted data is recieved in the data flow.
                 It adds checksum to every data segment to figure out the data recieved by the end user is good or not. There is something called as connection oriented transmission[TCP] and connectionless oriented transmission[UDP]. UDP is faster as it doesn't give any feedback if the data is lost or not, that's the reason some data is lost in Gaming, video calls. In TCP the entire data is sent like in Emails, File Transfer Protocol.
+
         e) Network layer => This layer works on the transmission of data segments between 2 computers which are located on different networks, till the previous layers we were communicating within our the same network, but now we are communicating with outside networks. This is where the router lives. IP Addressing done in this layer is called Logical Addressing. This layer assigns the sender and reciever IP address to each data packets and forms an IP packets so that each and every data packet can reach the correct destination. It also performs routing, means moving the data packets from source to the destination.
         This layer determines the best path how data can be transferred from the source to the destination. Load Balacing also happens over here.
+
         f) Data link layer => This layer allows to directly communicate with the computers and hosts. It recieves the data from the Network Layer where it has both the sender and recievers IP Addresses. At this layer the below addressing is done:-
                 i) Physical Addressing -> Here MAC Addresses[12 digit Alphanumeric number of the network interface of the computer, there can be a diffrent MAC Addr. for the hardware, bluetooth, WiFi of our computer] of the sender and reciever are added to the data packets to form a "Frame".[A data unit  of the data link layer]
         The Data Link Layer performs 2 functions:-
                 i) Allows the upper layer of the OSI model to access the Frames.
                 ii) Controls how data is placed and recieved from the media using Media Access Controls, techniques used to get the frame on and off media and error detection.
+
         g) Physical layer => Hardware section like wires. which recieves the signals at the recievers section and converts it into bits.
         The entire OSI model cam be summarised like (image-7.png)
 
@@ -107,11 +117,13 @@ The request and the response will have cookies, there will be a cookie store in 
 Third Party Cookies => Cookies set for the urls that we don't visit.
 
 18. How Email Works => At the Application Layer we use these 2 protocols.
+
     a) SMTP => Simple Mail Transfer Protocol => Protocol to send email to people
     Sender sends the mail --> The mail goes to the senders SMTP server[gmail, yahoo, outlook] --> The mail resides there for a while --> Makes a connection with the recievers SMTP server[gmail, yahoo, outlook] --> Transfers the email[TCP protocol] --> Gets downloaded at the reciever's end.
     Note:-  i) If both the sender and reciever uses the same email systems[say both uses gmail or both use outlook] then we don't need to make a connection,the mail gets transferred directly. 
             ii) If the reciever's end is offline the sender still tries to send it for few days before it gives up.
             iii) nslookup -type=mx gmail.com => Gives the SMTP server details of the client.
+
     b) POP3 => Post Office Protocol => Protocol to recieve email
     The client connects to the POP server using TCP, 
     At the Transport Layer we use the TCP protocol because we don't want the data to get lost in the process.
@@ -119,11 +131,13 @@ Third Party Cookies => Cookies set for the urls that we don't visit.
                     Client -------------------------->POP Server
                            <--------------------------
                             Transact all the emails.
+
     c) IMAP => Internet Message Access Protocol => Allows to view the emails on multiple devices.
 
 
 19. DNS => Domain Name System => Ex:- When we type google.com, the HTTP protocol will use the DNS service to find the google's server, then it will convert the url to the IP address and connect to the server, because it's not possible to remember the IP  addresses of the server. DNS is like a directory/database which has all the url and the corresponding IP address linked. These databases are divided into various classes of domains.
     Ex:- mail.google.com ==> Here ---> "mail" refers to sub-domain[part of a bigger domain];  "google" -> refers to the second level domain; ".com" --> refers to the top level domain. So instead of storing the entire url in the same database, there are multiple database for these 3 categories mentioned below.
+
     a) Root DNS Servers:- First point of contact whenever we type a domain name, mainly for the top level domain. Ex:- .io, .org, .com
             Visit the website root-servers.org to see who maintains the servers. The database for the root DNS servers are managed bu ICANN[Internet Corporation for Assigned Names and Numbers], check icann.org
     When we visit a url for the first time it stores the IP Address in our local database on our system. Incase it is not found there it checks for it in our local DNS server, generally the ISP(first point of contact). If it is not found over there as well then it looks for it in the root server, if not found there as well then it looks in the top level domain. ![Alt text](image-13.png)
@@ -155,7 +169,9 @@ The Transport Layer has protocols -> TCP and UDP. The Transport Layer also takes
 
 25. 3 way handshake => ![Alt text](image-17.png)
         a)client sends a connection request to the server via a synchronisation flag(a flag inside the header) along with a sequence number.[ A sequence number is a random number so that it cannot be predicted and hackers can't take advantage of it]
+
         b) After getting the synchronisation flag the server sends another synchronisation flag, an acknowledgement flag[previous sequence number + 1] along with a sequence number(basically a mathematical calculation done on the sequence number sent by client) to the client.
+
         c) client now sends an acknowledgement number[previous sequence number + 1] along with another sequence number.
 
 ************************************** End of Transport Layer ************************************** 
@@ -166,12 +182,16 @@ The Transport Layer has protocols -> TCP and UDP. The Transport Layer also takes
 [Every router has it's own routing table which has a small part called forwarding table which consists of every destination address.] to be sent to the destination looking at the forarding table of the router by a process called "Hop by Hop Forwarding"[means hopping router to router untill it reaches the correct router].
 Control Plane => It stays in the network layer and is used to build these routing tables. There are 2 types of routing:-
     a) Static routing -> Adding routing addresses manually.
+
     b) Dynamc routing -> It evolves with network, whenever there is a change in network it evolves accordingly via path finding algorithms.
+
 An IP Address has 4 parts => 192.168.2.30 => Here 192.168.2 is the network address/subnet ID of our device, which network the device resides in; and .30 => device address/host ID. 
 
 27. IP => Internet Protocol ->   a) IPv4:- 32 bit numbers with 4 words. -> 2^32 unique IP addreses we can create
+
                                  b) IPv6:- 128 bits -> 2^128 unique IP addresses we can create -> to be used in future. IPv6 is 4*IPv4
     There are different types of class addresses mentioned below:-
+
     a) Class A -> 0.0.0.0  - 127.255.255.255                d) Class D -> 224.0.0.0 - 239.255.255.255
     b) Class B -> 128.0.0.0 - 191.255.255.255               e) Class E -> 240.0.0.0 - 255.255.255.255
     c) Class C -> 192.0.0.0 - 223.255.255.255
@@ -185,6 +205,7 @@ Packets -> Here header is of 20 bytes containing IP version, total length, ident
         ii) Connected to trusted network
     Filtering may happen based on following parameters -> i) Address   ii) Modify Packets   iii) Port Nos   iv) Flags   v) Protocols
     There are 2 types of firewall -> i) Stateless Firewall          ii) Statefull Firewall [More efficient]
+    
     b) Network Address Translation (NAT) => NAT is described here ![Alt text](image-18.png)     ![Alt text](image-19.png)
 
 ************************************** End of Network Layer ******************************************
