@@ -14,6 +14,15 @@ Client -------------------------->Server
 
     c) HTTP => Hyper Text Transfer Protocol => Used by web browsers which describes the format in which data is being transferred between clients and servers.
 
+    d) HTTPS => Exactly same as HTTP only added advantage is that it provides SSL encryption and thus better security
+
+    e) HTTP/3 (QUIC) => It's very fast (Thats why we say QUIC) and so it uses UDP connection and not TCP and so in a single request it starts send and accepting the data. It does Header Compression and it has improved performance and better network congestion. This protocol is used in IOT, Virtual Reality.
+
+    f) Web Socket => Used in Live Chat Streaming, Analytics Dashboard, the Likes and Comments tab. It uses "HTTP Upgrade" which basically means that the first connection will be HTTP and then it will upgrade the connection to Web Socket. Once Web Socket it achived it goes into "Full Duplex" Mode.
+    In a Full Duplex mode whenever we want in a single live connection a client can send data and also a server can send data. No new new connections are built in this case.
+
+    g) FTP => File Transfer Protocol => Used to transfer big files from one system to another system.
+
 5. Every other device that is connected to each other over a network has something called as "IP Address". 
     To check IP address of the device run => $ curl ifconfig.me -s
     ISP ==> Modem/Router [This will have a Global IP Address, all devices connected to this will have same IP address] ==> Router is connected to 4 Devices D1, D2, D3, D4. The Modem gives IP Addresses to these 4 devices called as "Local IP Addresses", this is done by DHCP{Dynamic Host Configuration Protocol}.
@@ -91,8 +100,10 @@ Ports 0 - 1023 => Reserved Ports, 1024-49152 => Reserved for some specific appli
             v) POP3 and IMAC
             vi) SSH
             vii) VNC
+            viii) HTTPS
         b) TELNET
         c) UDP
+            i) HTTP/3 (QUIC)
 
 14. Ephemeral Ports => Say there is an application Chrome running multiple tabs and a request comes to chrome but doesn't know which tab has requested, so the application chrome will assign itself random number ports, so once the application is no longer using it, the port will be free.
 
